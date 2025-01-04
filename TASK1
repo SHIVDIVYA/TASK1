@@ -1,0 +1,95 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+// Function prototypes
+void displayMenu();
+void exploreRoom(int &score, bool &isAlive);
+void fightEnemy(int &score, bool &isAlive);
+void findTreasure(int &score);
+
+int main() {
+    srand(static_cast<unsigned>(time(0))); // Seed random number generator
+
+    int score = 0;
+    bool isAlive = true;
+    char choice;
+
+    cout << "Welcome to the Text-Based Adventure Game!\n";
+    cout << "Your goal is to explore rooms, collect treasures, and survive.\n\n";
+
+    while (isAlive) {
+        displayMenu();
+        cin >> choice;
+        choice = tolower(choice);
+
+        switch (choice) {
+            case 'e':
+                exploreRoom(score, isAlive);
+                break;
+            case 's':
+                cout << "Your current score is: " << score << endl;
+                break;
+            case 'q':
+                cout << "Thank you for playing! Final score: " << score << endl;
+                isAlive = false;
+                break;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    }
+
+    return 0;
+}
+
+// Displays the game menu
+void displayMenu() {
+    cout << "\n--- Main Menu ---\n";
+    cout << "e: Explore a room\n";
+    cout << "s: Show score\n";
+    cout << "q: Quit the game\n";
+    cout << "Enter your choice: ";
+}
+
+// Simulates exploring a room
+void exploreRoom(int &score, bool &isAlive) {
+    cout << "\nYou enter a dark room...\n";
+    int event = rand() % 3; // Random event: 0 - enemy, 1 - treasure, 2 - empty
+
+    switch (event) {
+        case 0:
+            fightEnemy(score, isAlive);
+            break;
+        case 1:
+            findTreasure(score);
+            break;
+        case 2:
+            cout << "The room is empty. Nothing to see here.\n";
+            break;
+    }
+}
+
+// Simulates fighting an enemy
+void fightEnemy(int &score, bool &isAlive) {
+    cout << "An enemy appears! Prepare to fight!\n";
+    int playerAttack = rand() % 10 + 1;  // Player attack power (1-10)
+    int enemyAttack = rand() % 10 + 1;   // Enemy attack power (1-10)
+
+    if (playerAttack >= enemyAttack) {
+        cout << "You defeated the enemy!\n";
+        score += 10; // Gain 10 points for winning
+    } else {
+        cout << "You were defeated by the enemy...\n";
+        isAlive = false; // Player loses
+    }
+}
+
+// Simulates finding a treasure
+void findTreasure(int &score) {
+    int treasureValue = rand() % 20 + 1; // Treasure value (1-20)
+    cout << "You found a treasure worth " << treasureValue << " points!\n";
+    score += treasureValue;
+}
