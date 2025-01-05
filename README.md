@@ -92,6 +92,7 @@ Save the player's highest score in a file to compare across sessions.
 
 Introduce items, puzzles, or NPCs for interaction.
 
-Add different types of enemies and treasures with unique properties.[output (1).pdf](https://github.com/user-attachments/files/18309858/output.1.pdf)
+Add different types of enemies and treasures with unique properties![WhatsApp Image 2025-01-04 at 1 22 35 PM](https://github.com/user-attachments/assets/d6e1376e-e8e8-4fff-a355-8237ac7fbaa8)
+
 
 
